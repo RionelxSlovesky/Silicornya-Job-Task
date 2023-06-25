@@ -16,7 +16,7 @@ const Login = () => {
                 <input type="submit" value="Log In" className="w-full bg-indigo-500 text-white text-2xl py-5 my-12 rounded" />
             </form>
 
-            <p className="text-center text-xl"><span className="font-semibold">Don&apos;t have an account?</span> <Link className="text-indigo-500 underline">Register Now</Link></p>
+            <p className="text-center text-xl"><span className="font-semibold">Don&apos;t Have An Account?</span> <Link to="/register" className="text-indigo-500 underline">Register Now</Link></p>
 
         </div>
     );
