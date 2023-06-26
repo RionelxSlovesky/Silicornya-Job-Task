@@ -13,7 +13,7 @@ const Login = () => {
                 <label className="inline-block mb-2 text-2xl  font-semibold"  htmlFor="login-password">Password*</label><br />
                 <input className="border border-black text-xl w-full py-4 px-3 rounded" type="password" name="login-password" id="login-password" placeholder="Enter Password" required/>
 
-                <input type="submit" value="Log In" className="w-full bg-indigo-500 text-white text-2xl py-5 my-12 rounded" />
+                <input type="submit" value="Log In" className="w-full bg-indigo-500 text-white text-2xl py-5 my-12 rounded cursor-pointer" />
             </form>
 
             <p className="text-center text-xl"><span className="font-semibold">Don&apos;t Have An Account?</span> <Link to="/register" className="text-indigo-500 underline">Register Now</Link></p>

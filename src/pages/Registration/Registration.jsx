@@ -10,8 +10,6 @@ const Registration = () => {
 
     const [currentStep, setCurrentStep] = useState(1)
 
-    const [clickable, setClickable] = useState(false)
-
 
     const steps = [
         "Information",
@@ -22,9 +20,9 @@ const Registration = () => {
     const displayStep = (step) => {
         switch (step) {
             case 1:
-                return <Information clickable={clickable}></Information>
+                return <Information currentStep={currentStep} setCurrentStep={setCurrentStep}></Information>
             case 2:
-                return <Security></Security>
+                return <Security currentStep={currentStep} setCurrentStep={setCurrentStep}></Security>
             case 3:
                 return <Confirmation></Confirmation>
             default:
@@ -32,19 +30,19 @@ const Registration = () => {
         }
     }
 
-    const handleClick = () => {
+    // const handleClick = () => {
 
         
 
-        if(currentStep<3){
-            setCurrentStep(currentStep+1)
-            console.log(currentStep)
-        }
-        if(currentStep===3) {
-            console.log(currentStep)
-        }
+    //     if(currentStep<3){
+    //         setCurrentStep(currentStep+1)
+    //         console.log(currentStep)
+    //     }
+    //     if(currentStep===3) {
+    //         console.log(currentStep)
+    //     }
         
-    }
+    // }
 
     return (
         <div className=" text-gray-700 px-12 pb-24">
@@ -56,9 +54,7 @@ const Registration = () => {
             <div className="max-w-[700px] mx-auto">
                 {/* display components */}
                 {displayStep(currentStep)}
-
-                {/* navigation controls */}
-                <StepperControl handleClick={handleClick} currentStep={currentStep} steps={steps}></StepperControl>
+                
             </div>
 
             <p className={`text-center text-xl ${currentStep===steps.length && "hidden"}`}><span className="font-semibold">Already Have An Account?</span> <Link to="/" className="text-indigo-500 underline">Log In</Link></p>
