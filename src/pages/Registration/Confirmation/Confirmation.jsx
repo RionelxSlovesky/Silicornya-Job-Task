@@ -13,7 +13,7 @@ const Confirmation = () => {
 
             <h2 className="text-2xl md:text-4xl font-semibold mb-5">Thank you!</h2>
 
-            <p className="text-gray-400 md:text-3xl mb-8">Account Has Been Created. Enjoy Job Task.</p>
+            <p className="text-gray-400 md:text-3xl mb-8">Account Has Been Created. Login To Enjoy Job Task.</p>
 
 
 
