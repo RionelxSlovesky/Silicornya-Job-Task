@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { BiLogOut } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Sidebar = ({menus}) => {
 
     const [open, setOpen] = useState(false);
+    const navigate = useNavigate()
+
+    const handleLogOut = () => {
+        localStorage.removeItem('userInfo')
+        navigate('/')
+    }
 
     return (
         <div
@@ -41,7 +47,7 @@ const Sidebar = ({menus}) => {
                         </h2>
                     </Link>
                 ))}
-                <button className={`mt-5 group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}>
+                <button onClick={handleLogOut} className={`mt-5 group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}>
                     <div>{React.createElement(BiLogOut, { size: "20" })}</div>
                     <h2
 

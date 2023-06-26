@@ -29,9 +29,16 @@ const Login = () => {
             })
             .then(res => res.json())
             .then(data => {
-                setUserInfo(data.data)
-                localStorage.setItem("userInfo",JSON.stringify(data.data))
-                navigate('/dashboard')
+                console.log(data)
+                if(data.status) {
+                    setUserInfo(data.data)
+                    localStorage.setItem("userInfo",JSON.stringify(data.data))
+                    navigate('/dashboard')
+                }
+                else{
+                    alert('Please Insert Your Credentials Correctly')
+                }
+                
             })
             .catch(err => {
                 console.log(err)
