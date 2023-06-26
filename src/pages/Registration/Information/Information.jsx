@@ -1,6 +1,11 @@
+import { useState } from "react";
 
 
 const Information = ({ currentStep, setCurrentStep }) => {
+
+    const [position, setPosition] = useState('teacher')
+
+
 
 
     const handleInformation = (e) => {
@@ -11,7 +16,7 @@ const Information = ({ currentStep, setCurrentStep }) => {
         const position = form.position.value;
 
         console.log(name, email, position)
-        
+
         setCurrentStep(currentStep + 1)
     }
 
@@ -24,7 +29,42 @@ const Information = ({ currentStep, setCurrentStep }) => {
             <input className="border border-black text-xl  w-full py-4 px-3 mb-5 rounded" type="email" name="registerEmail" id="registerEmail" placeholder="Enter Email Address" required />
 
             <label className="inline-block mb-2 text-2xl  font-semibold" htmlFor="position">Position</label><br />
-            <input className="border border-black text-xl w-full py-4 px-3 rounded" type="text" name="position" id="position" placeholder="Position" required />
+            <select onChange={(e) => setPosition(e.target.value)} name="position" id="position" className="border border-black text-xl w-full py-4 px-3 rounded mb-5">
+                <option className="border border-black text-xl w-full py-4 px-3 rounded" value="teacher">Teacher</option>
+                <option className="border border-black text-xl w-full py-4 px-3 rounded" value="student">Student</option>
+            </select>
+
+            <label className="inline-block mb-2 text-2xl  font-semibold" htmlFor="institute">Institute Name</label><br />
+            <select name="institute" id="institute" className="border border-black text-xl w-full py-4 px-3 rounded mb-5">
+                <option className="border border-black text-xl w-full py-4 px-3 rounded" value="Dhaka National Medical College">Dhaka National Medical College</option>
+                <option className="border border-black text-xl w-full py-4 px-3 rounded" value="Ibrahim Medical College">Ibrahim Medical College</option>
+                <option className="border border-black text-xl w-full py-4 px-3 rounded" value="Bangladesh Medical College">Bangladesh Medical College</option>
+                <option className="border border-black text-xl w-full py-4 px-3 rounded" value="Holy Family Red Crescent Medical College">Holy Family Red Crescent Medical College</option>
+            </select>
+
+            {position === 'teacher' ?
+                <>
+                    <label className="inline-block mb-2 text-2xl  font-semibold" htmlFor="workTime">Work Time</label><br />
+                    <select name="workTime" id="workTime" className="border border-black text-xl w-full py-4 px-3 rounded">
+                        <option className="border border-black text-xl w-full py-4 px-3 rounded" value="full time">Full Time</option>
+                        <option className="border border-black text-xl w-full py-4 px-3 rounded" value="part time">Part Time</option>
+                    </select>
+                </>
+                :
+                <>
+                    <label className="inline-block mb-2 text-2xl  font-semibold" htmlFor="workTime">Education Level</label><br />
+                    <select name="workTime" id="workTime" className="border border-black text-xl w-full py-4 px-3 rounded">
+                        <option className="border border-black text-xl w-full py-4 px-3 rounded" value="Secondary School Certificate (SSC)">Secondary School Certificate (SSC)</option>
+                        <option className="border border-black text-xl w-full py-4 px-3 rounded" value="Higher School Certificate (HSC)">Higher School Certificate (HSC)</option>
+                        <option className="border border-black text-xl w-full py-4 px-3 rounded" value="Diploma">Diploma</option>
+                        <option className="border border-black text-xl w-full py-4 px-3 rounded" value="Bachelor of Science (BSC)">Bachelor of Science (BSC)</option>
+                        <option className="border border-black text-xl w-full py-4 px-3 rounded" value="Master of Arts (MA)">Master of Arts (MA)</option>
+                        <option className="border border-black text-xl w-full py-4 px-3 rounded" value="Bachelor of Arts (BA)">Bachelor of Arts (BA)</option>
+                    </select>
+
+                </>}
+
+
 
             <input type="submit" value="Next" className="w-full bg-indigo-500 text-white text-2xl py-5 my-12 rounded cursor-pointer" />
         </form>
