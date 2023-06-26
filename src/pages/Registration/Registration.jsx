@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Stepper from "../../components/Stepper";
-import StepperControl from "../../components/StepperControl";
 import Information from "./Information/Information";
 import Security from "./Security/Security";
 import Confirmation from "./Confirmation/Confirmation";
@@ -9,6 +8,8 @@ import { useState } from "react";
 const Registration = () => {
 
     const [currentStep, setCurrentStep] = useState(1)
+
+    const [regDetails, setRegDetails] = useState({})
 
 
     const steps = [
@@ -20,29 +21,15 @@ const Registration = () => {
     const displayStep = (step) => {
         switch (step) {
             case 1:
-                return <Information currentStep={currentStep} setCurrentStep={setCurrentStep}></Information>
+                return <Information currentStep={currentStep} setCurrentStep={setCurrentStep} setRegDetails={setRegDetails}></Information>
             case 2:
-                return <Security currentStep={currentStep} setCurrentStep={setCurrentStep}></Security>
+                return <Security currentStep={currentStep} setCurrentStep={setCurrentStep} regDetails={regDetails} setRegDetails={setRegDetails}></Security>
             case 3:
                 return <Confirmation></Confirmation>
             default:
                 return null
         }
     }
-
-    // const handleClick = () => {
-
-        
-
-    //     if(currentStep<3){
-    //         setCurrentStep(currentStep+1)
-    //         console.log(currentStep)
-    //     }
-    //     if(currentStep===3) {
-    //         console.log(currentStep)
-    //     }
-        
-    // }
 
     return (
         <div className=" text-gray-700 px-12 pb-24">

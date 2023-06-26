@@ -1,11 +1,9 @@
 import { useState } from "react";
 
 
-const Information = ({ currentStep, setCurrentStep }) => {
+const Information = ({ currentStep, setCurrentStep, setRegDetails }) => {
 
     const [position, setPosition] = useState('teacher')
-
-
 
 
     const handleInformation = (e) => {
@@ -13,9 +11,30 @@ const Information = ({ currentStep, setCurrentStep }) => {
         const form = e.target;
         const name = form.fullName.value;
         const email = form.registerEmail.value;
-        const position = form.position.value;
+        const instituteName = form.institute.value;
 
-        console.log(name, email, position)
+        if(position==='teacher') {
+            const workTime = form.workTime.value;
+            const info = {
+                full_name: name,
+                email,
+                position,
+                institution_name: instituteName,
+                work_time: workTime
+            }
+            setRegDetails(info)
+        }
+        else {
+            const educationLevel = form.educationLevel.value;
+            const info = {
+                full_name: name,
+                email,
+                position,
+                institution_name: instituteName,
+                education_level: educationLevel
+            }
+            setRegDetails(info)
+        }
 
         setCurrentStep(currentStep + 1)
     }
@@ -46,14 +65,14 @@ const Information = ({ currentStep, setCurrentStep }) => {
                 <>
                     <label className="inline-block mb-2 text-2xl  font-semibold" htmlFor="workTime">Work Time</label><br />
                     <select name="workTime" id="workTime" className="border border-black text-xl w-full py-4 px-3 rounded">
-                        <option className="border border-black text-xl w-full py-4 px-3 rounded" value="full time">Full Time</option>
-                        <option className="border border-black text-xl w-full py-4 px-3 rounded" value="part time">Part Time</option>
+                        <option className="border border-black text-xl w-full py-4 px-3 rounded" value="full_time">Full Time</option>
+                        <option className="border border-black text-xl w-full py-4 px-3 rounded" value="part_time">Part Time</option>
                     </select>
                 </>
                 :
                 <>
-                    <label className="inline-block mb-2 text-2xl  font-semibold" htmlFor="workTime">Education Level</label><br />
-                    <select name="workTime" id="workTime" className="border border-black text-xl w-full py-4 px-3 rounded">
+                    <label className="inline-block mb-2 text-2xl  font-semibold" htmlFor="educationLevel">Education Level</label><br />
+                    <select name="educationLevel" id="educationLevel" className="border border-black text-xl w-full py-4 px-3 rounded">
                         <option className="border border-black text-xl w-full py-4 px-3 rounded" value="Secondary School Certificate (SSC)">Secondary School Certificate (SSC)</option>
                         <option className="border border-black text-xl w-full py-4 px-3 rounded" value="Higher School Certificate (HSC)">Higher School Certificate (HSC)</option>
                         <option className="border border-black text-xl w-full py-4 px-3 rounded" value="Diploma">Diploma</option>

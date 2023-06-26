@@ -1,6 +1,6 @@
 
 
-const Security = ( {currentStep, setCurrentStep} ) => {
+const Security = ( {currentStep, setCurrentStep, regDetails, setRegDetails} ) => {
 
     const handleSecurity = (e) => {
         e.preventDefault()
@@ -9,6 +9,14 @@ const Security = ( {currentStep, setCurrentStep} ) => {
         const confirmPass = form.reNewPass.value;
 
         if(newPass===confirmPass) {
+            const newInfo = {
+                ...regDetails,
+                password: newPass,
+                confirm_password: confirmPass
+            };
+
+            setRegDetails(newInfo)
+            console.log(newInfo) 
             setCurrentStep(currentStep + 1)
         }
         else{
