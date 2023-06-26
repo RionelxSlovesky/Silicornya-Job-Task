@@ -10,6 +10,8 @@ const Registration = () => {
 
     const [currentStep, setCurrentStep] = useState(1)
 
+    const [clickable, setClickable] = useState(false)
+
 
     const steps = [
         "Information",
@@ -20,7 +22,7 @@ const Registration = () => {
     const displayStep = (step) => {
         switch (step) {
             case 1:
-                return <Information></Information>
+                return <Information clickable={clickable}></Information>
             case 2:
                 return <Security></Security>
             case 3:
@@ -31,6 +33,8 @@ const Registration = () => {
     }
 
     const handleClick = () => {
+
+        
 
         if(currentStep<3){
             setCurrentStep(currentStep+1)
@@ -57,7 +61,7 @@ const Registration = () => {
                 <StepperControl handleClick={handleClick} currentStep={currentStep} steps={steps}></StepperControl>
             </div>
 
-            <p className="text-center text-xl"><span className="font-semibold">Already Have An Account?</span> <Link to="/" className="text-indigo-500 underline">Log In</Link></p>
+            <p className={`text-center text-xl ${currentStep===steps.length && "hidden"}`}><span className="font-semibold">Already Have An Account?</span> <Link to="/" className="text-indigo-500 underline">Log In</Link></p>
 
         </div>
     );
