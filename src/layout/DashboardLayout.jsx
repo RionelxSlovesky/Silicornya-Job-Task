@@ -22,10 +22,10 @@ const DashboardLayout = () => {
         ];
     }else if(userInfo?.position === 'teacher') {
         menus = [
-            { name: "Dashboard", link: "/", icon: BiHomeAlt2 },
-            { name: "Courses", link: "/", icon: AiOutlineUnorderedList },
-            { name: "Add New Courses", link: "/", icon: AiOutlineUnorderedList },
-            { name: "Account", link: "/", icon: CiUser }
+            { name: "Dashboard", link: "/dashboard/teacher-board", icon: BiHomeAlt2 },
+            { name: "Courses", link: "/dashboard/teacher-courses", icon: AiOutlineUnorderedList },
+            { name: "Add New Courses", link: "/dashboard/teacher-add-courses", icon: AiOutlineUnorderedList },
+            { name: "Account", link: "/dashboard/teacher-account", icon: CiUser }
         ];
     }
 

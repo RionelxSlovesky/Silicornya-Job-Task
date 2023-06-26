@@ -31,9 +31,15 @@ const Login = () => {
             .then(data => {
                 console.log(data)
                 if(data.status) {
+                    console.log(data.data)
                     setUserInfo(data.data)
                     localStorage.setItem("userInfo",JSON.stringify(data.data))
-                    navigate('/dashboard')
+                    if(data.data.position === 'student'){
+                        navigate('/dashboard/student-board')
+                    }else if(data.data.position === 'teacher'){
+                        navigate('/dashboard/teacher-board')
+                    }
+                    
                 }
                 else{
                     alert('Please Insert Your Credentials Correctly')
