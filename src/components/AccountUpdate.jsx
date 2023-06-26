@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import { RiAccountCircleLine } from "react-icons/ri";
 
 
 const AccountUpdate = () => {
@@ -77,8 +78,11 @@ const AccountUpdate = () => {
                 <h2 className="font-semibold md:text-2xl md:mb-2">Discover</h2>
                 <p>Dashboard &gt; <span className="text-indigo-500">Account</span></p>
             </div>
-            <div className="bg-gray-200 p-4 lg:px-12 lg:flex lg:gap-4" style={{alignItems: 'flex-start'}}>
+            <div className="bg-gray-200 p-4 lg:px-12 lg:flex lg:gap-4" style={{ alignItems: 'flex-start' }}>
                 <div className="w-full p-4 md:px-12 md:py-8 mb-4 lg:mb-0 bg-white rounded-[1rem]">
+
+                    <RiAccountCircleLine className="mx-auto text-[100px] mb-2 md:text-[200px] md:mb-3"></RiAccountCircleLine>
+
                     <h1 className="text-center font-semibold mb-6 text-lg md:mb-12 md:text-4xl">{userDetails?.full_name}</h1>
                     <h2 className="font-semibold mb-2 md:text-2xl">About</h2>
                     <p className="text-gray-400 md:text-lg">{userDetails?.cover_letter}</p>
