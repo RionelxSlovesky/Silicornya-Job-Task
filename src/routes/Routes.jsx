@@ -5,10 +5,11 @@ import Registration from "../pages/Registration/Registration";
 import DashboardLayout from "../layout/DashboardLayout";
 import StudentDashboard from "../pages/Student/StudentDashboard";
 import AccountUpdate from "../components/AccountUpdate";
-import StudentCourses from "../pages/Student/StudentCourses";
+import AllCourses from "../components/AllCourses";
 import TeacherDashboard from "../pages/Teacher/TeacherDashboard";
 import TeacherCourses from "../pages/Teacher/TeacherCourses";
 import TeacherAddCourses from "../pages/Teacher/TeacherAddCourses";
+import CourseDetails from "../components/CourseDetails";
 
 
 export const router = createBrowserRouter([
@@ -36,7 +37,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/student-courses',
-                element: <StudentCourses></StudentCourses>
+                element: <AllCourses></AllCourses>
             },
             {
                 path: '/dashboard/student-account',
@@ -48,7 +49,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/teacher-courses',
-                element: <TeacherCourses></TeacherCourses>
+                element: <AllCourses></AllCourses>
             },
             {
                 path: '/dashboard/teacher-add-courses',
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/teacher-account',
                 element: <AccountUpdate></AccountUpdate>
+            },
+            {
+                path: '/dashboard/course/:id',
+                element: <CourseDetails></CourseDetails>
             },
         ]
         
