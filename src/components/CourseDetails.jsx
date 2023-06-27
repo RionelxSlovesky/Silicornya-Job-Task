@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import { RiAccountCircleLine } from "react-icons/ri";
-import {AiOutlineShoppingCart} from "react-icons/ai"
+import { AiOutlineShoppingCart } from "react-icons/ai"
 
 
 const CourseDetails = () => {
@@ -18,7 +18,7 @@ const CourseDetails = () => {
 
         if (userInfo) {
 
-            const id = params.id.slice(1, -1);
+            const id = decodeURIComponent(params.id);
 
             fetch('http://18.136.192.25:5000/api/v1/course/details', {
                 method: 'POST',
@@ -48,7 +48,7 @@ const CourseDetails = () => {
         e.preventDefault()
         const form = e.target;
         const comment = form.comment.value;
-        const id = params.id.slice(1, -1);
+        const id = decodeURIComponent(params.id);
 
         const req = {
             "course_id": id,
@@ -68,6 +68,28 @@ const CourseDetails = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.status) {
+
+
+                    fetch('http://18.136.192.25:5000/api/v1/course/details', {
+                        method: 'POST',
+                        headers: {
+                            "content-type": "application/json",
+                            authorization: `Bearer ${userInfo?.token}`
+                        },
+                        body: JSON.stringify({
+                            "course_id": id
+                        })
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.status) {
+                                setComments(data.send_res.comment_info)
+                            }
+                        })
+                        .catch(err => console.log(err))
+
+                        form.reset()
+
                     alert(data.message)
                 }
             })
@@ -150,96 +172,96 @@ const CourseDetails = () => {
 
                     <div className="mb-8">
                         <h2 className="uppercase text-gray-400 mb-4">Course 1 - Introduction</h2>
-                        
+
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U1</h2>
                             <p className="">Presentation</p>
-                            <p className="ml-auto text-green-600 font-bold">&#10003;</p> 
+                            <p className="ml-auto text-green-600 font-bold">&#10003;</p>
                         </div>
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U2</h2>
                             <p className="">Job Opportunities...</p>
-                            <p className="ml-auto text-green-600 font-bold">&#10003;</p> 
+                            <p className="ml-auto text-green-600 font-bold">&#10003;</p>
                         </div>
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U3</h2>
                             <p className="">How to get the most...</p>
-                            <p className="ml-auto text-green-600 font-bold">&#10003;</p> 
+                            <p className="ml-auto text-green-600 font-bold">&#10003;</p>
                         </div>
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U4</h2>
                             <p className="">How to get the most...</p>
-                            <p className="ml-auto font-bold">&#10003;</p> 
+                            <p className="ml-auto font-bold">&#10003;</p>
                         </div>
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U5</h2>
                             <p className="">Interface and the...</p>
-                            <p className="ml-auto font-bold">&#10003;</p> 
+                            <p className="ml-auto font-bold">&#10003;</p>
                         </div>
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U6</h2>
                             <p className="">Volume and vectors</p>
-                            <p className="ml-auto font-bold">&#10003;</p> 
+                            <p className="ml-auto font-bold">&#10003;</p>
                         </div>
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U7</h2>
                             <p className="">Symmetry, connector...</p>
-                            <p className="ml-auto font-bold">&#10003;</p> 
+                            <p className="ml-auto font-bold">&#10003;</p>
                         </div>
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U8</h2>
                             <p className="">Add and remove lines...</p>
-                            <p className="ml-auto font-bold">&#10003;</p> 
+                            <p className="ml-auto font-bold">&#10003;</p>
                         </div>
                     </div>
 
                     <div>
                         <h2 className="uppercase text-gray-400 mb-4">Course 2 - Learn Manufacturing</h2>
-                        
+
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U1</h2>
                             <p className="">Spontaneous chara...</p>
-                            <p className="ml-auto font-bold">&#10003;</p> 
+                            <p className="ml-auto font-bold">&#10003;</p>
                         </div>
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U2</h2>
                             <p className="">Deformers</p>
-                            <p className="ml-auto  font-bold">&#10003;</p> 
+                            <p className="ml-auto  font-bold">&#10003;</p>
                         </div>
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U3</h2>
                             <p className="">Mograph (cloner)</p>
-                            <p className="ml-auto  font-bold">&#10003;</p> 
+                            <p className="ml-auto  font-bold">&#10003;</p>
                         </div>
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U4</h2>
                             <p className="">How to get the most...</p>
-                            <p className="ml-auto font-bold">&#10003;</p> 
+                            <p className="ml-auto font-bold">&#10003;</p>
                         </div>
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U5</h2>
                             <p className="">Interface and the...</p>
-                            <p className="ml-auto font-bold">&#10003;</p> 
+                            <p className="ml-auto font-bold">&#10003;</p>
                         </div>
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U6</h2>
                             <p className="">Volume and vectors</p>
-                            <p className="ml-auto font-bold">&#10003;</p> 
+                            <p className="ml-auto font-bold">&#10003;</p>
                         </div>
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U7</h2>
                             <p className="">Symmetry, connector...</p>
-                            <p className="ml-auto font-bold">&#10003;</p> 
+                            <p className="ml-auto font-bold">&#10003;</p>
                         </div>
                         <div className="mb-2 flex items-center">
                             <h2 className="me-5 bg-indigo-300 h-8 w-8 flex justify-center items-center rounded-full">U8</h2>
                             <p className="">Practice: first charac...</p>
-                            <p className="ml-auto font-bold">&#10003;</p> 
+                            <p className="ml-auto font-bold">&#10003;</p>
                         </div>
                     </div>
 
                     <div className="my-10 flex justify-center md:text-2xl bg-gray-200 px-2 py-5 border-2 border-gray-400 border-dashed rounded-lg">
-                        USD {parseFloat(courseDetails?.price).toFixed(2)} <span className="ms-2 line-through text-gray-400">${courseDetails?.price+100}</span>
+                        USD {parseFloat(courseDetails?.price).toFixed(2)} <span className="ms-2 line-through text-gray-400">${courseDetails?.price + 100}</span>
                     </div>
 
                     <button className="w-full bg-indigo-500 text-white md:text-2xl  flex justify-center items-center gap-3 p-3 rounded-lg"><AiOutlineShoppingCart></AiOutlineShoppingCart>Buy Now</button>

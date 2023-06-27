@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 
 const CourseCard = ({ course }) => {
+
+    const parameter = encodeURIComponent(course?.id);
+
     return (
         <div>
 
@@ -21,7 +24,7 @@ const CourseCard = ({ course }) => {
                             <p className="text-gray-400 inline">15 Lessons (10h 5m)</p>
                         </div>
 
-                        <Link to={`/dashboard/course/(${course?.id})`}><button className="bg-indigo-500 text-white p-2 rounded-lg cursor-pointer">${course?.price}</button></Link>
+                        <Link to={`/dashboard/course/${parameter}`}><button className="bg-indigo-500 text-white p-2 rounded-lg cursor-pointer">${course?.price}</button></Link>
 
                     </div>
 
