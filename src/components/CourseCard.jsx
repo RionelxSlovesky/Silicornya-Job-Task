@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 const CourseCard = ({ course }) => {
     return (
-        <div className="max-w-2xl">
+        <div>
 
-            <div className="bg-white shadow-md border rounded-lg max-w-sm">
+            <div className="bg-white shadow-md border rounded-lg md:w-56">
                 <div>
-                    <img className="rounded-t-lg" src={course?.introduction_file} alt="" />
+                    <img className="rounded-t-lg h-40 w-full object-cover" src={course?.introduction_file} alt="" />
                 </div>
                 <div className="p-5">
                     <h1 className="mb-8">{course?.lesson_name}</h1>

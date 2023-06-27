@@ -59,7 +59,7 @@ const AllCourses = () => {
 
                 </div>
 
-                <div>
+                <div className="flex justify-center md:justify-start gap-5 flex-wrap">
                     {
                         courses.map(course => <CourseCard key={course.id} course={course}></CourseCard>)
                     }
