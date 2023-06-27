@@ -3,7 +3,8 @@ import { BsAward } from 'react-icons/bs';
 import { FaClipboardList } from 'react-icons/fa'
 import { MdOutlineShowChart } from 'react-icons/md'
 
-const DashboardCards = ({options}) => {
+const DashboardCards = ({dashboardData}) => {
+    console.log(dashboardData)
     return (
         <div className='flex gap-4 justify-center lg:justify-between flex-wrap'>
             <div className="card flex-grow py-8 px-4 shadow-lg rounded-lg">
@@ -13,15 +14,15 @@ const DashboardCards = ({options}) => {
                     </div>
                     <div>
                         <div>
-                            <h1 className='text-2xl'>{options[0].number}</h1>
+                            <h1 className='text-2xl'>{dashboardData[0]?.total}</h1>
                         </div>
-                        <p className='text-gray-500'>{options[0].text}</p>
+                        <p className='text-gray-500'>{dashboardData[0]?.title}</p>
                     </div>
                 </div>
                 <div className="w-full bg-neutral-200 dark:bg-neutral-300 rounded">
                     <div
-                        className={`bg-indigo-500 text-white p-1  text-center text-xs font-medium leading-none text-primary-100 w-[${options[0].progress}%] rounded`}>
-                        {options[0].progress}%
+                        className={`bg-indigo-500 text-white p-1  text-center text-xs font-medium leading-none text-primary-100 w-[${dashboardData[0]?.progress}%] rounded`}>
+                        {dashboardData[0]?.progress}%
                     </div>
                 </div>
             </div>
@@ -32,15 +33,15 @@ const DashboardCards = ({options}) => {
                     </div>
                     <div>
                         <div>
-                            <h1 className='text-2xl'>{options[1].number}</h1>
+                            <h1 className='text-2xl'>{dashboardData[1]?.total}</h1>
                         </div>
-                        <p className='text-gray-500'>{options[1].text}</p>
+                        <p className='text-gray-500'>{dashboardData[1]?.title}</p>
                     </div>
                 </div>
                 <div className="w-full bg-neutral-200 dark:bg-neutral-300 rounded">
                     <div
-                        className={`bg-orange-500 text-white p-1  text-center text-xs font-medium leading-none text-primary-100 w-[${options[1].progress}%] rounded`}>
-                        {options[1].progress}%
+                        className={`bg-orange-500 text-white p-1  text-center text-xs font-medium leading-none text-primary-100 w-[${dashboardData[1]?.progress}%] rounded`}>
+                        {dashboardData[1]?.progress}%
                     </div>
                 </div>
             </div>
@@ -51,15 +52,15 @@ const DashboardCards = ({options}) => {
                     </div>
                     <div>
                         <div>
-                            <h1 className='text-2xl'>{options[2].number}</h1>
+                            <h1 className='text-2xl'>{dashboardData[2]?.total}</h1>
                         </div>
-                        <p className='text-gray-500'>{options[2].text}</p>
+                        <p className='text-gray-500'>{dashboardData[2]?.title}</p>
                     </div>
                 </div>
                 <div className="w-full bg-neutral-200 dark:bg-neutral-300 rounded">
                     <div
-                        className={`bg-yellow-500 text-white p-1  text-center text-xs font-medium leading-none text-primary-100 w-[${options[2].progress}%] rounded`}>
-                        {options[2].progress}%
+                        className={`bg-yellow-500 text-white p-1  text-center text-xs font-medium leading-none text-primary-100 w-[${dashboardData[2]?.progress}%] rounded`}>
+                        {dashboardData[2]?.progress}%
                     </div>
                 </div>
             </div>
@@ -70,9 +71,9 @@ const DashboardCards = ({options}) => {
                     </div>
                     <div>
                         <div>
-                            <h1 className='text-2xl'>{options[3].number}</h1>
+                            <h1 className='text-2xl'>{dashboardData[3]?.total}</h1>
                         </div>
-                        <p className='text-gray-500'>{options[3].text}</p>
+                        <p className='text-gray-500'>{dashboardData[3]?.title}</p>
                     </div>
                 </div>
                 <p className='text-indigo-500'>View Courses -&gt;</p>

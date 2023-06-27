@@ -1,18 +1,39 @@
+import { useContext, useEffect, useState } from "react";
 import DashboardCards from "../../components/DashboardCards";
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 const StudentDashboard = () => {
 
-    const options = [
-        {number: 55, text: 'Course completed', progress: 70},
-        {number: 20, text: 'Certificate earned', progress: 20},
-        {number: 25, text: 'Course in progress', progress: 30},
-        {number: 86, text: 'Total Course'},
-    ]
+    const { userInfo } = useContext(AuthContext);
+    const [dashboardData, setDashbordData] = useState([])
+
+    useEffect(() => {
+
+        if (userInfo) {
+            fetch('http://18.136.192.25:5000/api/v1/dashboard/statics', {
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json",
+                    authorization: `Bearer ${userInfo?.token}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data.statics)
+                    if (data.status) {
+                        setDashbordData(data.statics)
+                    }
+                })
+                .catch(err => console.log(err))
+        }
+
+
+    }, [userInfo])
 
     return (
         <div>
-            <DashboardCards options={options}></DashboardCards>
+            <DashboardCards dashboardData={dashboardData}></DashboardCards>
         </div>
     );
 };
