@@ -4,7 +4,6 @@ import { FaClipboardList } from 'react-icons/fa'
 import { MdOutlineShowChart } from 'react-icons/md'
 
 const DashboardCards = ({dashboardData}) => {
-    console.log(dashboardData)
     return (
         <div className='flex gap-4 justify-center lg:justify-between flex-wrap'>
             <div className="card flex-grow py-8 px-4 shadow-lg rounded-lg">

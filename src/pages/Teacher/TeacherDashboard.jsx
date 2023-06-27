@@ -31,7 +31,7 @@ const TeacherDashboard = () => {
     }, [userInfo])
 
     return (
-        <div>
+        <div className="p-4 lg:px-12 ">
             <DashboardCards dashboardData={dashboardData}></DashboardCards>
         </div>
     );
