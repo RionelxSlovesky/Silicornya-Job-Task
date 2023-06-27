@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import DashboardCards from "../../components/DashboardCards";
 import { AuthContext } from "../../providers/AuthProvider";
-import { LineChart, Line, XAxis, YAxis } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
 
 
 const StudentDashboard = () => {
@@ -108,7 +108,9 @@ const StudentDashboard = () => {
     return (
         <div className="p-4 lg:px-12">
             <DashboardCards dashboardData={dashboardData}></DashboardCards>
-            <div className="p-8 shadow-lg rounded-lg">
+
+
+            <div className="hidden md:block p-8 shadow-lg rounded-lg">
                 <h1 className="font-semibold mb-2 text-2xl">Your Daily Progress</h1>
                 <div className="mb-16">
                     <button onClick={() => setChartOption('weekly')} className="bg-indigo-500 p-2 rounded-lg text-white">Weekly</button>
@@ -121,6 +123,7 @@ const StudentDashboard = () => {
                         <Line type="monotone" dataKey="watchHours" stroke="#8884d8" />
                         <XAxis dataKey="dayName" />
                         <YAxis />
+                        <Tooltip />
                     </LineChart>
                 }
 
@@ -129,6 +132,7 @@ const StudentDashboard = () => {
                         <Line type="monotone" dataKey="watchHours" stroke="#8884d8" />
                         <XAxis dataKey="dayName" />
                         <YAxis />
+                        <Tooltip />
                     </LineChart>
                 }
 
@@ -137,6 +141,7 @@ const StudentDashboard = () => {
                         <Line type="monotone" dataKey="watchHours" stroke="#8884d8" />
                         <XAxis dataKey="dayName" />
                         <YAxis />
+                        <Tooltip />
                     </LineChart>
                 }
 
