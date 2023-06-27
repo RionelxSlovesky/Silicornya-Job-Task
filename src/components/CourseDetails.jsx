@@ -33,7 +33,6 @@ const CourseDetails = () => {
                 .then(data => {
                     if (data.status) {
                         setCourseDetails(data.send_res)
-                        console.log(data.send_res.comment_info)
                         setComments(data.send_res.comment_info)
                     }
                 })
@@ -42,6 +41,38 @@ const CourseDetails = () => {
 
 
     }, [userInfo, params.id])
+
+
+    const handleComment = (e) => {
+        e.preventDefault()
+        const form = e.target;
+        const comment = form.comment.value;
+        const id = params.id.slice(1, -1);
+
+        const req = {
+            "course_id": id,
+            comment
+        }
+
+        console.log(req)
+
+        fetch('http://18.136.192.25:5000/api/v1/course/comment/add', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo?.token}`
+            },
+            body: JSON.stringify(req)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status) {
+                    alert(data.message)
+                }
+            })
+            .catch(err => console.log(err))
+
+    }
 
     return (
         <div>
@@ -104,13 +135,15 @@ const CourseDetails = () => {
                         }
 
                         <h2 className="my-5 font-semibold text-lg">Leave a Comment</h2>
-                        <form>
-                            <textarea className="appearance-none block w-full md:h-48 bg-gray-200  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="coverLetter" type="text" placeholder="Write your comments here..." required />
+                        <form onSubmit={handleComment}>
+                            <textarea className="appearance-none block w-full md:h-48 bg-gray-200  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="comment" type="text" placeholder="Write your comments here..." required />
                             <input className="bg-indigo-500 text-white p-3 rounded-lg cursor-pointer" type="submit" value="Publish review" />
                         </form>
                     </div>
 
                 </div>
+
+                
             </div>
         </div>
     );
