@@ -7,7 +7,6 @@ import StudentDashboard from "../pages/Student/StudentDashboard";
 import AccountUpdate from "../components/AccountUpdate";
 import AllCourses from "../components/AllCourses";
 import TeacherDashboard from "../pages/Teacher/TeacherDashboard";
-import TeacherCourses from "../pages/Teacher/TeacherCourses";
 import TeacherAddCourses from "../pages/Teacher/TeacherAddCourses";
 import CourseDetails from "../components/CourseDetails";
 
