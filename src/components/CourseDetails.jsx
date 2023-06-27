@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
+import { RiAccountCircleLine } from "react-icons/ri";
 
 
 const CourseDetails = () => {
@@ -9,6 +10,7 @@ const CourseDetails = () => {
 
     const { userInfo } = useContext(AuthContext);
     const [courseDetails, setCourseDetails] = useState({})
+    const [comments, setComments] = useState([])
     const [overview, setOverview] = useState(true)
 
     useEffect(() => {
@@ -30,8 +32,9 @@ const CourseDetails = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.status) {
-                        console.log(data.send_res)
                         setCourseDetails(data.send_res)
+                        console.log(data.send_res.comment_info)
+                        setComments(data.send_res.comment_info)
                     }
                 })
                 .catch(err => console.log(err))
@@ -48,7 +51,7 @@ const CourseDetails = () => {
             </div>
             <div className="bg-gray-200 p-4 lg:px-12 lg:flex lg:gap-4" style={{ alignItems: 'flex-start' }}>
                 <div className="w-full p-4 md:px-12 md:py-8 mb-4 lg:mb-0 bg-white rounded-[1rem]">
-                    <img className="rounded-lg mb-4" src={courseDetails?.main_course_file} alt="" />
+                    <img className="rounded-lg mb-4 w-full max-h-96 object-cover" src={courseDetails?.main_course_file} alt="" />
                     <h1 className="text-xl md:text-3xl">{courseDetails?.lesson_name}</h1>
                     <p className="text-gray-500">By <span className="text-black font-semibold">{courseDetails?.teacher_info?.full_name}, </span>{courseDetails?.teacher_info?.institution_name}</p>
 
@@ -76,6 +79,36 @@ const CourseDetails = () => {
                             </div>
                         </>
                     }
+
+                    <hr className="my-5" />
+
+                    <div className="comments">
+
+                        {
+                            comments?.map(comment =>
+                                <div key={comment.comment_id}>
+                                    <div className="flex gap-3 py-3">
+                                        <div className="text-3xl">
+                                            <RiAccountCircleLine></RiAccountCircleLine>
+                                        </div>
+                                        <div>
+                                            <h1 className="text-xl">{comment.user_info.full_name}</h1>
+                                            <p>{comment.created_at}</p>
+                                            <p className="text-gray-500">{comment.comment}</p>
+
+                                        </div>
+                                    </div>
+                                    <hr />
+
+                                </div>)
+                        }
+
+                        <h2 className="my-5 font-semibold text-lg">Leave a Comment</h2>
+                        <form>
+                            <textarea className="appearance-none block w-full md:h-48 bg-gray-200  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="coverLetter" type="text" placeholder="Write your comments here..." required />
+                            <input className="bg-indigo-500 text-white p-3 rounded-lg cursor-pointer" type="submit" value="Publish review" />
+                        </form>
+                    </div>
 
                 </div>
             </div>
